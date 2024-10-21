@@ -19,5 +19,7 @@ let allTasks = [
     if (newArr) {
         allTasks = newArr; 
       }
-    return allTasks
+      const data = localStorage.getItem('tasks');
+    return data ? JSON.parse(data) : allTasks;
+  
   }

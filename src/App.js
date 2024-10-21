@@ -1,7 +1,7 @@
 import NewTask from "./components/NewTask/NewTask";
 import Task from "./components/Task/Task";
 import Title from "./components/Title/Title";
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import nextId  from "react-id-generator";
 import './App.scss'
 import {getData} from './components/data/data'
@@ -10,21 +10,12 @@ import {getData} from './components/data/data'
 
 
 function App() {
-  // const allTasks = [
-  //   {
-  //     id: nextId(),
-  //     title: 'Hello',
-  //     body: '1111',
-  //     checked: false
-  //   },
-  //   {
-  //     id: nextId(),
-  //     title: 'By',
-  //     body: '2222',
-  //     checked: false
-  //   }
-  // ]
+  
   const [allTask, setAllTask] = useState(getData());
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(allTask));
+  }, [allTask]);
 
   function addTask(task){
     setAllTask((prev)=>{
